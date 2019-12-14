@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yoke.mapper.StudentMapper">
+    <resultMap id="student_map" type="com.yoke.model.Student">
+        <id column="SId" property="sId"/>
+        <result column="Sname" property="sName"/>
+        <result column="Sage" property="sAge"/>
+        <result column="Ssex" property="sSex"/>
+    </resultMap>
+
+    <select id="getStudentBySId" resultMap="student_map">
+        SELECT SId, Sname, Sage, Ssex FROM student WHERE SId = #{sid}
+    </select>
+</mapper>

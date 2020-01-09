@@ -1,0 +1,9 @@
+# Initializers
+org.springframework.context.ApplicationContextInitializer=\
+com.yoke.context.AfterHelloWorldApplicationContextInitializer,\
+com.yoke.context.HelloWorldApplicationContextInitializer
+
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+com.yoke.listener.AfterHelloWorldListener,\
+com.yoke.listener.HelloWorldListener

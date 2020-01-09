@@ -7,7 +7,7 @@
         <module>chapter02-spring-boot-autoconfig</module>
 		<module>chapter01-spring-boot-overview</module>
         <module>chapter03-spring-boot-application</module>
-	</modules>
+    </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

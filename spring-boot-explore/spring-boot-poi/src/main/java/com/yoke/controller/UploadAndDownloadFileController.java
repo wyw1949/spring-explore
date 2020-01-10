@@ -25,8 +25,7 @@ public class UploadAndDownloadFileController {
 
     @PostMapping("/upload")
     public Object uploadFile(UploadFileParams fileParams){
-        handlerFileService.uploadFile(fileParams);
-        return null;
+        return handlerFileService.uploadFile(fileParams);
     }
 
     @GetMapping("/download")

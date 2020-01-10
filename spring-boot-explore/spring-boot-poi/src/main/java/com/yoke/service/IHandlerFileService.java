@@ -21,4 +21,12 @@ public interface IHandlerFileService {
      * @param response 响应
      */
     void download(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+    /**
+     * 批量导入
+     * @param libId 库id
+     * @param userId 用户id
+     * @return 处理结果
+     */
+    Object batchImport(String libId, String userId);
 }

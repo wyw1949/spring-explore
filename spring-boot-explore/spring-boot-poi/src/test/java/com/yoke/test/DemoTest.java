@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 public class DemoTest {
@@ -20,5 +21,21 @@ public class DemoTest {
     @Test
     public void testDeleteDir() throws IOException {
         FileUtils.cleanDirectory(new File("C:\\Users\\yoke\\Desktop\\template"));
+    }
+
+    @Test
+    public void testSubString() {
+        String path = "/serviceId/lib";
+        System.out.println(path.substring(0, path.lastIndexOf("/lib")));
+    }
+
+    @Test
+    public void testFileList() {
+        File dir = new File("C:\\Users\\liyu\\Desktop\\person_batch_import_template");
+        dir.list((dir1, name) -> {
+            System.out.println(dir1.getName() + "---" + name);
+            return true;
+        });
+
     }
 }

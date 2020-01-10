@@ -2,10 +2,10 @@ package com.yoke.service.impl;
 
 import com.yoke.moel.UploadFileParams;
 import com.yoke.service.IHandlerFileService;
+import com.yoke.utils.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +13,8 @@ import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -26,59 +28,35 @@ public class HandlerFileServiceImpl implements IHandlerFileService {
      */
     @Override
     public Object uploadFile(UploadFileParams params) {
-        String jarFilePath = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
-        log.info("服务jar文件路径：{}", jarFilePath);
-        String parentPath;
-        if (StringUtils.isNotBlank(jarFilePath) && jarFilePath.contains(":")){
-            parentPath = jarFilePath.substring(1, jarFilePath.lastIndexOf("/"));
-        }else {
-            parentPath = jarFilePath.substring(0, jarFilePath.lastIndexOf("/"));
-        }
-        log.info("文件上传存储父路径：{}", parentPath);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", "200");
+        result.put("message", "SUCCESS");
+        // 获取应用所在目录
+        String parentPath = FileUtil.getUploadDirPath();
+        log.info("服务所在位置目录：{}", parentPath);
+
+        // 创建文件上传目录
         String userId = params.getUserId();
         String libId = params.getLibId();
         log.info("上传文件用户：{}， 所在库：{}", userId, libId);
         String fileStorePath = parentPath + "/" + libId + "/" + userId;
         File fileStoreDir = new File(fileStorePath);
-        if (!fileStoreDir.exists()){
-            boolean mkdirsFlag = fileStoreDir.mkdirs();
-            if (!mkdirsFlag){
-                // 抛异常或返回
-                log.info("创建目录（{}）失败", fileStorePath);
-            }
-        }
-        File[] fileList = fileStoreDir.listFiles();
-        if (fileList != null && fileList.length > 0){
-            //清空文件夹
-            try {
-                FileUtils.cleanDirectory(fileStoreDir);
-            } catch (IOException e) {
-                log.error("清空文件夹（{}）异常", fileStorePath);
-            }
-        }
 
         // 创建好目录之后，将上传的文件写入
         MultipartFile uploadFile = params.getFile();
-        if (uploadFile != null){
-            String uploadFileName = uploadFile.getName();
-            if (uploadFileName.endsWith(".zip") || uploadFileName.endsWith("ZIP")){
-                File storeFile = new File(fileStorePath + "/" + uploadFileName);
-                try(InputStream is = uploadFile.getInputStream();
-                OutputStream os = new FileOutputStream(storeFile)){
-                    IOUtils.copy(is, os);
-                    os.flush();
-                } catch (IOException e) {
-                    log.error("保存文件异常", e);
-                }
-            }else {
-                // 文件格式不正确
-                log.error("上传文件格式不正确：{}，要求是zip格式", uploadFileName);
-            }
-        }else {
-            // 抛出异常
-            log.error("上传文件为空！");
+        try {
+            // 创建上传目录
+            FileUtils.forceMkdir(fileStoreDir);
+            // 清空文件夹
+            FileUtils.cleanDirectory(fileStoreDir);
+            // 创建好目录之后，将上传的文件写入
+            FileUtil.storeFile(uploadFile, fileStorePath);
+        } catch (IOException e) {
+            log.error("保存文件失败。", e);
+            result.put("code", "500");
+            result.put("message", e);
         }
-        return null;
+        return result;
     }
 
     /**
@@ -99,4 +77,23 @@ public class HandlerFileServiceImpl implements IHandlerFileService {
             IOUtils.copy(templateStream, os);
         }
     }
+
+    /**
+     * 批量导入人员
+     * @param libId 库id
+     * @param userId 用户id
+     * @return 处理结果
+     */
+    @Override
+    public Object batchImport(String libId, String userId) {
+        // 解压上传的文件
+
+        // 解析上传的文件
+
+        // 保存人员信息
+
+        return null;
+    }
+
+
 }

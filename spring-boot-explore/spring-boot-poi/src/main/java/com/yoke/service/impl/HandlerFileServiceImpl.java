@@ -1,8 +1,10 @@
 package com.yoke.service.impl;
 
+import com.yoke.moel.PersonEntity;
 import com.yoke.moel.UploadFileParams;
 import com.yoke.service.IHandlerFileService;
 import com.yoke.utils.FileUtil;
+import com.yoke.utils.ZipUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -87,11 +90,21 @@ public class HandlerFileServiceImpl implements IHandlerFileService {
     @Override
     public Object batchImport(String libId, String userId) {
         // 解压上传的文件
+        String fileStorePath = FileUtil.getUploadDirPath() + "/" + libId + "/" + userId;
+        try {
+            String unzipPath = ZipUtil.unzip(fileStorePath);
+            // 解析上传的文件
+            List<PersonEntity> personEntities = analysisPersonFileToPersonEntities(unzipPath);
+            // todo 保存人员信息
 
-        // 解析上传的文件
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-        // 保存人员信息
-
+    private List<PersonEntity> analysisPersonFileToPersonEntities(String unzipPath) {
+        // todo
         return null;
     }
 

@@ -1,0 +1,11 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      name: config-client
+      profile: dev
+      label: master
+      uri: http://localhost:8086

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        通过将JavaConfig配置在xml中，将java config 引入xml.
+        对于将xml引入java config中，可使用@ImportResource注解
+    -->
+    <bean id="cdPlayerConfig" class="com.yoke.auto.CDPlayerConfig"/>
+</beans>

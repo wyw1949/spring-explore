@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yoke</groupId>
+    <artifactId>spring-in-action</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>chapter02-DI</module>
+        <module>chapter03-advanced-DI</module>
+        <module>chapter04-aop</module>
+        <module>chapter05-web</module>
+        <module>chapter07-advance-web</module>
+        <module>chapter09-secuerty</module>
+        <module>chapter10-jdbc</module>
+        <module>chapter17-message</module>
+    </modules>
+
+    <properties>
+        <spring.platform.version>Brussels-SR17</spring.platform.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <javax.inject.version>1</javax.inject.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <!-- JSR330(Dependency Inject For Java)规范 -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax.inject.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

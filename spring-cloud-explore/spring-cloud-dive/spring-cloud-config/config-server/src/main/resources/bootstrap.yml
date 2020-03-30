@@ -1,0 +1,12 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wyw1949/config-repo
+          username: 1352444134@qq.com
+          password: wangyw4869

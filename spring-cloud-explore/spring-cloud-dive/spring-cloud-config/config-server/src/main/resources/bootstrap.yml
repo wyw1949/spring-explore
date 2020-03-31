@@ -7,6 +7,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/wyw1949/config-repo
+          uri: https://github.com/wyw1949/spring-explore
+          search-paths:
+            # 首尾的‘/’可有可无
+            - /spring-cloud-explore/spring-cloud-dive/spring-cloud-config/config-repo/
           username: 1352444134@qq.com
           password: wangyw4869

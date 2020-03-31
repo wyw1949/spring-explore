@@ -1,0 +1,27 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: gateway-zuul
+zuul:
+  routes:
+    a:
+      service-id: zuul-service-a
+      path: /a/**
+    b:
+      service-id: zuul-service-b
+      path: /b/**
+#    baidu:
+      # url的形式对于每个服务实例都要进行硬编码的配置，不符合微服务治理的理念
+#      url: https://blog.csdn.net/qq_27384769/article/details/82991261
+#      path: /test/**
+#集成eureka
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+

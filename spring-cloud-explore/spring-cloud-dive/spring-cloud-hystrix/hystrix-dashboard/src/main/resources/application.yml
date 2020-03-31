@@ -10,7 +10,6 @@ eureka:
     registerWithEureka: true
     # 是否从注册中心获取注册表
     fetchRegistry: true
-    # 服务注册中心路由，对于单节点也不需要配置
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 management:

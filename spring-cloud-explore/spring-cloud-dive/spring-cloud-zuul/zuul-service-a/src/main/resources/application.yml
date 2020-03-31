@@ -1,0 +1,14 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: zuul-service-a
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+

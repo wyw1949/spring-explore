@@ -1,0 +1,38 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: config-server-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wyw1949/spring-explore
+          search-paths:
+            # 首尾的"/"可有可无
+            - /spring-cloud-explore/spring-cloud-dive/spring-cloud-config/
+          username: 1352444134@qq.com
+          password: wangyw4869
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"

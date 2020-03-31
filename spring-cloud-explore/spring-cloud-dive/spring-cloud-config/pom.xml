@@ -12,8 +12,9 @@
     <artifactId>spring-cloud-config</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>config-server</module>
-        <module>config-client</module>
+        <module>registry</module>
+        <module>config-server-service</module>
+        <module>provider-service</module>
     </modules>
 
 

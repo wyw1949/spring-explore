@@ -1,0 +1,37 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: provider-service
+  cloud:
+    config:
+      name: provider
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server-service
+    #开启消息总线跟踪
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"

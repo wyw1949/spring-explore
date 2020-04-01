@@ -1,8 +1,8 @@
 server:
-  port: 8083
+  port: 8085
 spring:
   application:
-    name: provider
+    name: hystrix-dashboard-turbine
 eureka:
   client:
     # 单节点注册中心不需要注册到euraka,也不需要从注册中心获取注册表
@@ -10,12 +10,8 @@ eureka:
     registerWithEureka: true
     # 是否从注册中心获取注册表
     fetchRegistry: true
-    # 服务注册中心路由，对于单节点也不需要配置
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-feign:
-  hystrix:
-    enabled: true
 management:
   security:
     enabled: false
@@ -23,3 +19,9 @@ management:
     web:
       exposure:
         include: hystrix.stream
+turbine:
+  # 配置需要收集监控信息的服务，要求被监控的服务开启Hystrix并引入actuator，
+  # 开放hystrix.stream端点，在访问服务端点后可在Dashboard中观察到接口的hystrix.stream信息
+  appConfig: feign-hystrix-client,provider
+  # 集群的名称
+  clusterNameExpression: "'default'"

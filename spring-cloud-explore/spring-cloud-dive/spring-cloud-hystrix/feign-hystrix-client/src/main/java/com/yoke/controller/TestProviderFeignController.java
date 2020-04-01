@@ -17,4 +17,13 @@ public class TestProviderFeignController {
         return testProvider.checkUser(username);
     }
 
+    @GetMapping("/forProvider")
+    public String forProvider(){
+        return "forProvider";
+    }
+
+    @GetMapping("/forProvider2")
+    public String forProvider2(){
+        return "forProvider2";
+    }
 }

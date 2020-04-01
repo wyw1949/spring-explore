@@ -17,6 +17,7 @@
         <module>feign-hystrix-client</module>
         <module>Provider</module>
         <module>hystrix-dashboard</module>
+        <module>hystrix-dashboard-turbine</module>
     </modules>
 
 

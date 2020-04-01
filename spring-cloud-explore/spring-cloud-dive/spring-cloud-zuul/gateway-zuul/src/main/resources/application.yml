@@ -3,14 +3,22 @@ server:
 spring:
   application:
     name: gateway-zuul
+
 zuul:
-  routes:
-    a:
-      service-id: zuul-service-a
-      path: /a/**
-    b:
-      service-id: zuul-service-b
-      path: /b/**
+  retryable: true
+ribbon:
+  # 重试次数
+  MaxAutoRetries: 2
+  #切换相同Server的次数
+  MaxAutoRetriesNextServer: 0
+# 在不配置routes时，zuul默认从注册中心获取服务列表，为所有服务代理，以服务Id为路由的path来进行路由
+#  routes:
+#    a:
+#      service-id: zuul-service-a
+#      path: /a/**
+#    b:
+#      service-id: zuul-service-b
+#      path: /b/**
 #    baidu:
       # url的形式对于每个服务实例都要进行硬编码的配置，不符合微服务治理的理念
 #      url: https://blog.csdn.net/qq_27384769/article/details/82991261

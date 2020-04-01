@@ -58,17 +58,18 @@ public class TokenFilter extends ZuulFilter {
         return true;
     }
 
-    //
     @Override
     public Object run() throws ZuulException {
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
         String token = request.getParameter("token");
         if (token != null && !"".equals(token.trim())){
+            // 下发请求
             currentContext.setSendZuulResponse(true);
             currentContext.setResponseStatusCode(200);
             currentContext.set("isSucceed", true);
         }else {
+            // 不下发请求
             currentContext.setSendZuulResponse(false);
             currentContext.setResponseStatusCode(400);
             currentContext.setResponseBody("token is empty!");

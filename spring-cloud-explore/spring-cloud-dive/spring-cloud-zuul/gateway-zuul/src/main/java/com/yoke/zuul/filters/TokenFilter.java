@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  *  例如，我们可以定制一种STATIC类型的过滤器，直接在Zuul中生成响应，而不将请求转发到后端的微服务。
  *
  * zuul自定义的filter(此filter并不是servlet中的filter，而是zuul定义的filter规范)
- * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  *  类型	    顺序	       过滤器	                功能
  * pre	        -3	    ServletDetectionFilter	    标记处理Servlet的类型
  * pre	        -2	    Servlet30WrapperFilter	    包装HttpServletRequest请求
@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * route	    500	    SendForwardFilter	        forward请求转发
  * post	        0	    SendErrorFilter	            处理有错误的请求响应
  * post	        1000	SendResponseFilter	        处理正常的请求响应
- *
+ * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * 若要禁用filter可做如下配置
  * zuul.FormBodyWrapperFilter.pre.disable=true   禁用FormBodyWrapperFilter
  *

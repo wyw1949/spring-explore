@@ -15,7 +15,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yoke</groupId>
-	<artifactId>spring-boot-dive</artifactId>
+	<artifactId>spring-boot-explore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-dive</name>
 	<description>Demo project for Spring Boot</description>

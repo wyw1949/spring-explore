@@ -20,7 +20,7 @@
     </modules>
 
     <properties>
-        <spring.platform.version>Brussels-SR17</spring.platform.version>
+        <spring.platform.version>Cairo-SR7</spring.platform.version>
         <commons-logging.version>1.2</commons-logging.version>
         <javax.inject.version>1</javax.inject.version>
     </properties>

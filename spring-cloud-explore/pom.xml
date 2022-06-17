@@ -18,7 +18,7 @@
     <properties>
         <spring-cloud-version>Greenwich.SR5</spring-cloud-version>
         <spring-boot-version>2.1.12.RELEASE</spring-boot-version>
-        <fast-json-version>1.2.58</fast-json-version>
+        <fast-json-version>1.2.83</fast-json-version>
         <lombok-version>1.18.8</lombok-version>
     </properties>
 
